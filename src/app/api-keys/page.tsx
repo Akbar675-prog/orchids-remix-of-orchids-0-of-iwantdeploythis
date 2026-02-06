@@ -90,6 +90,57 @@ export default function ApiKeysPage() {
     fetchKeys()
   }, [])
 
+  useEffect(() => {
+    const dismissed = sessionStorage.getItem("opus-46-toast-dismissed")
+    if (dismissed) return
+
+    const timer = setTimeout(() => {
+      toast.custom(
+        (t) => (
+          <div
+            className="w-[420px] rounded-2xl border border-border bg-background shadow-2xl overflow-hidden"
+            style={{ pointerEvents: "auto" }}
+          >
+            <div className="relative w-full h-[180px] overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://exafunction.github.io/public/images/blog/opus-4.6/opus-4.6-blog-card.png"
+                alt="Claude Opus 4.6"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="p-5 space-y-3">
+              <h3
+                className="text-base font-semibold text-foreground"
+                dangerouslySetInnerHTML={{
+                  __html: "New Models - <strong>Claude Opus 4.6</strong>",
+                }}
+              />
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Claude Opus 4.6 is Anthropic&apos;s most powerful model yet, featuring
+                breakthrough reasoning capabilities, advanced code generation, and
+                exceptional multilingual fluency. Built for complex, multi-step tasks
+                with unmatched accuracy and depth.
+              </p>
+              <button
+                onClick={() => {
+                  sessionStorage.setItem("opus-46-toast-dismissed", "true")
+                  toast.dismiss(t)
+                }}
+                className="w-full mt-1 px-4 py-2 rounded-full border border-border text-sm font-medium hover:bg-muted transition-colors"
+              >
+                Dismiss
+              </button>
+            </div>
+          </div>
+        ),
+        { duration: Infinity, position: "bottom-right" }
+      )
+    }, 1000)
+
+    return () => clearTimeout(timer)
+  }, [])
+
   const handleCreateKey = async () => {
     if (isCreating) return
     setIsCreating(true)
