@@ -234,14 +234,15 @@ export function useChatCore({
         })
 
         // Call Puter AI
-        const puterModelMap: Record<string, string> = {
-          "grok-4": "x-ai/grok-4.1-fast",
-          "grok-4-heavy": "x-ai/grok-4-heavy",
-          "grok-2": "x-ai/grok-2",
-          "claude-3-5-sonnet-latest": "claude-3-5-sonnet",
-          "claude-4.5-sonnet": "claude-sonnet-4-5",
-          "claude-4.5-opus": "claude-opus-4-5",
-        }
+          const puterModelMap: Record<string, string> = {
+            "grok-4": "x-ai/grok-4.1-fast",
+            "grok-4-heavy": "x-ai/grok-4-heavy",
+            "grok-2": "x-ai/grok-2",
+            "claude-3-5-sonnet-latest": "claude-3-5-sonnet",
+            "claude-4.5-sonnet": "claude-sonnet-4-5",
+            "claude-4.5-opus": "claude-opus-4-5",
+            "claude-opus-4.6": "claude-opus-4-6",
+          }
         
         const puterModel = puterModelMap[selectedModel] || "gpt-4o"
 
@@ -862,6 +863,7 @@ export function useChatCore({
                 "claude-3-5-sonnet-latest": "claude-3-5-sonnet",
                 "claude-4.5-sonnet": "claude-sonnet-4-5",
                 "claude-4.5-opus": "claude-opus-4-5",
+                "claude-opus-4.6": "claude-opus-4-6",
               }
               const puterModel = puterModelMap[selectedModel] || "gpt-4o"
 

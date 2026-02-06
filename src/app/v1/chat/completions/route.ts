@@ -91,7 +91,7 @@ async function handleRequest(req: Request, method: "GET" | "POST") {
       "grok-4-heavy", "grok-2", "grok-3", "grok-4",
       "gpt-5.2", "gpt-4o",
       "gemini-3-flash", "gemini-3-pro",
-      "claude-4.5-opus", "claude-4.5-sonnet", "claude-3.5-sonnet",
+      "claude-4.5-opus", "claude-4.5-sonnet", "claude-opus-4.6", "claude-3.5-sonnet",
       "xvai-q-4.5", "deepseek-r1"
     ]
 
@@ -344,12 +344,13 @@ function createOpenAIStyleResponse(content: string, model: string, usage?: any) 
   
   function createClaudeStyleResponse(text: string, model: string, usage?: any) {
     const id = "msg_" + Math.random().toString(36).substring(2, 15)
+    const responseModel = model === "claude-opus-4.6" ? "claude-4-6-opus-20260205" : model
     return new Response(
       JSON.stringify({
         id,
         type: "message",
         role: "assistant",
-        model,
+        model: responseModel,
         content: [
           {
             type: "text",

@@ -38,18 +38,19 @@ function parseCodeMeta(className?: string) {
 type EmojiDataEntry = {
   short_name: string
   short_names?: string[]
-  unified?: string
+  image?: string
 }
+
+const EMOJI_BASE_PATH = "https://cdn-emoji.visora.my.id/apple-emoji/64"
 
 const emojiShortcodeMap = (() => {
   const map = new Map<string, string>()
   ;(emojiData as EmojiDataEntry[]).forEach((emoji) => {
-    if (!emoji.unified) return
-    const filename = emoji.unified.toLowerCase()
+    if (!emoji.image) return
     const shortcodes = new Set<string>([emoji.short_name, ...(emoji.short_names || [])])
     shortcodes.forEach((shortcode) => {
       if (shortcode) {
-        map.set(shortcode, filename)
+        map.set(shortcode, emoji.image as string)
       }
     })
   })
@@ -723,15 +724,15 @@ const SHORTCODE_ALIASES: Record<string, string> = {
 }
 
 const replaceEmojiShortcodes = (value: string) => {
-    return value.replace(/:([a-zA-Z0-9_+-]+):/g, (match, shortcode) => {
-      const filename =
-        emojiShortcodeMap.get(shortcode) ||
-        emojiShortcodeMap.get(shortcode.replace(/_face$/, "")) ||
-        emojiShortcodeMap.get(SHORTCODE_ALIASES[shortcode] || "")
-      if (!filename) return match
-      return `![${shortcode}](/apple-emoji/64/${filename}.png)`
-    })
-  }
+  return value.replace(/:([a-zA-Z0-9_+-]+):/g, (match, shortcode) => {
+    const image =
+      emojiShortcodeMap.get(shortcode) ||
+      emojiShortcodeMap.get(shortcode.replace(/_face$/, "")) ||
+      emojiShortcodeMap.get(SHORTCODE_ALIASES[shortcode] || "")
+    if (!image) return match
+    return `![${shortcode}](${EMOJI_BASE_PATH}/${image})`
+  })
+}
 
 const INITIAL_COMPONENTS: Partial<Components> = {
   code: function CodeComponent({ className, children, ...props }) {

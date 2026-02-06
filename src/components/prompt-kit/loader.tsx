@@ -3,51 +3,47 @@
 export function Loader() {
   return (
     <div className="flex h-10 items-center justify-center py-2" aria-label="Loading">
-      <div className="dot-flashing" />
-      <style jsx>{`
-        .dot-flashing {
-          position: relative;
-          width: 10px;
-          height: 10px;
-          border-radius: 5px;
-          background-color: #a0a0a0;
-          animation: dot-flashing 1s infinite linear alternate;
-          animation-delay: 0.5s;
-        }
-        .dot-flashing::before,
-        .dot-flashing::after {
-          content: "";
-          display: inline-block;
-          position: absolute;
-          top: 0;
-        }
-        .dot-flashing::before {
-          left: -15px;
-          width: 10px;
-          height: 10px;
-          border-radius: 5px;
-          background-color: #a0a0a0;
-          animation: dot-flashing 1s infinite linear alternate;
-          animation-delay: 0s;
-        }
-        .dot-flashing::after {
-          left: 15px;
-          width: 10px;
-          height: 10px;
-          border-radius: 5px;
-          background-color: #a0a0a0;
-          animation: dot-flashing 1s infinite linear alternate;
-          animation-delay: 1s;
-        }
-        @keyframes dot-flashing {
-          0% {
-            background-color: #a0a0a0;
-          }
-          50%, 100% {
-            background-color: rgba(160, 160, 160, 0.2);
-          }
-        }
-      `}</style>
+      <svg
+        width="40"
+        height="16"
+        viewBox="0 0 60 24"
+        xmlns="http://www.w3.org/2000/svg"
+        className="fill-muted-foreground/60"
+      >
+        <circle cx="10" cy="12" r="5">
+          <animate
+            attributeName="cy"
+            begin="0s"
+            dur="0.9s"
+            values="12;6;12"
+            calcMode="spline"
+            keySplines="0.45, 0.05, 0.55, 0.95; 0.45, 0.05, 0.55, 0.95"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle cx="30" cy="12" r="5">
+          <animate
+            attributeName="cy"
+            begin="0.15s"
+            dur="0.9s"
+            values="12;6;12"
+            calcMode="spline"
+            keySplines="0.45, 0.05, 0.55, 0.95; 0.45, 0.05, 0.55, 0.95"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle cx="50" cy="12" r="5">
+          <animate
+            attributeName="cy"
+            begin="0.3s"
+            dur="0.9s"
+            values="12;6;12"
+            calcMode="spline"
+            keySplines="0.45, 0.05, 0.55, 0.95; 0.45, 0.05, 0.55, 0.95"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </svg>
     </div>
   )
 }

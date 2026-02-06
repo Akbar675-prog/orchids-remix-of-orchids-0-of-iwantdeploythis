@@ -34,6 +34,7 @@ const REQUESTED_MODEL_IDS = [
   "claude-3-5-sonnet-latest",
   "claude-4.5-opus",
   "claude-4.5-sonnet",
+  "claude-opus-4.6",
   "gemini-3.0-flash",
   "gemini-3.0-pro",
   "deepseek-r1",
