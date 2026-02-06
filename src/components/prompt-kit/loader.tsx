@@ -4,43 +4,40 @@ export function Loader() {
   return (
     <div className="flex h-10 items-center justify-center py-2" aria-label="Loading">
       <svg
-        width="40"
-        height="16"
-        viewBox="0 0 60 24"
         xmlns="http://www.w3.org/2000/svg"
-        className="fill-muted-foreground/60"
+        viewBox="0 0 24 24"
+        width="24"
+        height="24"
+        className="text-muted-foreground/60"
+        style={{ opacity: 1 }}
       >
-        <circle cx="10" cy="12" r="5">
+        <circle cx="4" cy="12" r="3" fill="currentColor">
           <animate
-            attributeName="cy"
-            begin="0s"
-            dur="0.9s"
-            values="12;6;12"
-            calcMode="spline"
-            keySplines="0.45, 0.05, 0.55, 0.95; 0.45, 0.05, 0.55, 0.95"
-            repeatCount="indefinite"
+            id="loader-dot1"
+            fill="freeze"
+            attributeName="opacity"
+            begin="0;loader-dot3.end-0.25s"
+            dur="0.75s"
+            values="1;.2"
           />
         </circle>
-        <circle cx="30" cy="12" r="5">
+        <circle cx="12" cy="12" r="3" fill="currentColor" opacity=".4">
           <animate
-            attributeName="cy"
-            begin="0.15s"
-            dur="0.9s"
-            values="12;6;12"
-            calcMode="spline"
-            keySplines="0.45, 0.05, 0.55, 0.95; 0.45, 0.05, 0.55, 0.95"
-            repeatCount="indefinite"
+            fill="freeze"
+            attributeName="opacity"
+            begin="loader-dot1.begin+0.15s"
+            dur="0.75s"
+            values="1;.2"
           />
         </circle>
-        <circle cx="50" cy="12" r="5">
+        <circle cx="20" cy="12" r="3" fill="currentColor" opacity=".3">
           <animate
-            attributeName="cy"
-            begin="0.3s"
-            dur="0.9s"
-            values="12;6;12"
-            calcMode="spline"
-            keySplines="0.45, 0.05, 0.55, 0.95; 0.45, 0.05, 0.55, 0.95"
-            repeatCount="indefinite"
+            id="loader-dot3"
+            fill="freeze"
+            attributeName="opacity"
+            begin="loader-dot1.begin+0.3s"
+            dur="0.75s"
+            values="1;.2"
           />
         </circle>
       </svg>
